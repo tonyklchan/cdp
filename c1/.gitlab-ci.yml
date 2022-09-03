@@ -76,7 +76,7 @@ sslscan:
   stage: integration
   script:
     - docker pull hysnsec/sslyze
-    - docker run --rm -v $(pwd):/tmp hysnsec/sslyze --regular prod-9jy27sfh.lab.practical-devsecops.training:443 --json_out /tmp/sslyze-output.json
+    - docker run --rm -v $(pwd):/tmp hysnsec/sslyze prod-9jy27sfh.lab.practical-devsecops.training:443 --json_out /tmp/sslyze-output.json
   artifacts:
     paths: [sslyze-output.json]
     when: always
