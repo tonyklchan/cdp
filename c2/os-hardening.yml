@@ -1,0 +1,8 @@
+---
+- name: Playbook to harden prod server.
+  hosts: prod
+  remote_user: root
+  become: yes
+  roles:
+    - dev-sec.os-hardening
+
