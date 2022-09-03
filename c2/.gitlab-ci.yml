@@ -1,0 +1,40 @@
+aimage: docker:latest
+
+services:
+  - docker:dind
+
+stages:
+  - build
+  - test
+  - release
+  - preprod
+  - integration
+  - prod
+  - deploy
+
+job:
+  stage: build
+  script:
+    - echo "I'm a job"
+
+os-hardening:
+  stage: deploy
+  only:
+  - "master"
+  image: willhallonline/ansible:2.9-ubuntu-18.04
+  before_script:
+    - mkdir -p ~/.ssh
+    - echo "$DEPLOYMENT_SERVER_SSH_PRIVKEY" | tr -d '\r' > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - eval "$(ssh-agent -s)"
+    - ssh-add ~/.ssh/id_rsa
+    - ssh-keyscan -t rsa $DEPLOYMENT_SERVER >> ~/.ssh/known_hosts
+  script:
+    - echo -e "[prod]\n$DEPLOYMENT_SERVER" >> inventory.ini
+    - ansible-galaxy install dev-sec.os-hardening
+    - ANSIBLE_CALLBACK_WHITELIST=json ANSIBLE_STDOUT_CALLBACK=json ansible-playbook -i inventory.ini os-hardening.yml | tee os-hardening.json
+  artifacts:
+    paths: [os-hardening.json]
+    when: always
+  allow_failure: true
+
