@@ -102,4 +102,4 @@ zap-baseline:
   artifacts:
     paths: [zap-output.json]
     when: always
-  allow_failure: false
+  allow_failure: true
