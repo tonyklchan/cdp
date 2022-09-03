@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<!DOCTYPE niktoscan SYSTEM "docs/nikto.dtd">
+<niktoscan>
+<niktoscan hoststest="0" options="-output nikto_output.xml -h prod-9jy27sfh" version="2.1.6" scanstart="Sat Sep  3 12:56:16 2022" scanend="Thu Jan  1 00:00:00 1970" scanelapsed=" seconds" nxmlversion="1.2">
+
+<scandetails targetip="10.170.10.198" targethostname="prod-9jy27sfh" targetport="80" targetbanner="nginx/1.18.0 (Ubuntu)" starttime="2022-09-03 12:56:16" sitename="http://prod-9jy27sfh:80/" siteip="http://10.170.10.198:80/" hostheader="prod-9jy27sfh" errors="0" checks="6955">
+
+
+<item id="999103" osvdbid="0" osvdblink="" method="GET">
+<description><![CDATA[The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type.]]></description>
+<uri><![CDATA[/]]></uri>
+<namelink><![CDATA[http://prod-9jy27sfh:80/]]></namelink>
+<iplink><![CDATA[http://10.170.10.198:80/]]></iplink>
+</item>
+
+<item id="000398" osvdbid="17113" osvdblink="https://vulners.com/osvdb/OSVDB:17113" method="GET">
+<description><![CDATA[/SilverStream: SilverStream allows directory listing]]></description>
+<uri><![CDATA[/SilverStream]]></uri>
+<namelink><![CDATA[http://prod-9jy27sfh:80/SilverStream]]></namelink>
+<iplink><![CDATA[http://10.170.10.198:80/SilverStream]]></iplink>
+</item>
+
+<statistics elapsed="222" itemsfound="2" itemstested="6955" endtime="2022-09-03 12:59:58" />
+</scandetails>
+
+</niktoscan>
+
+
+</niktoscan>
